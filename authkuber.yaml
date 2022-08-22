@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authorization-deployment 
+  labels:
+    app: Authorization
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: Authorization
+  template:
+    metadata:
+      labels:
+        app: Authorization
+    spec:
+      containers:
+      - name: authorization
+        image: AuthorizationContainerRegistrye12e.azurecr.io/authorizationimage:latest
+        resources:
+        env:
+           - name: ConnectionString
+             value: Server = "Server=tcp:authorizationuserdetails.database.windows.net,1433;Initial Catalog=UserDetails;Persist Security Info=False;User ID=userlogin;password=password@123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+        - name: webapisvcsecret  
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: authmcsvc
+spec:
+  type: LoadBalancer
+  selector:
+    app: Authorization
+  ports:
+  - port: 80
