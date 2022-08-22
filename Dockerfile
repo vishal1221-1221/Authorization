@@ -4,7 +4,7 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["Authorization/Authorization.csproj", "Authorization/"]
+COPY *.csproj ./
 RUN dotnet restore "Authorization/Authorization.csproj"
 COPY . .
 WORKDIR "/src/Authorization"
