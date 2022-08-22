@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: authorization
-        image: AuthorizationContainerRegistrye12e.azurecr.io/authorizationimage:latest
+        image: authorizationcontainerregistrye12e.azurecr.io/authorizationimage:latest
         resources:
         env:
            - name: ConnectionString
