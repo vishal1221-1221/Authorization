@@ -31,7 +31,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: authmcsvc
+  name: authorizationsvc
 spec:
   type: LoadBalancer
   selector:
